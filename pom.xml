@@ -6,7 +6,7 @@
 
     <groupId>com.hugovs.gls</groupId>
     <artifactId>core</artifactId>
-    <version>1.0.0-FINAL</version>
+    <version>1.0.1-FINAL</version>
 
     <build>
         <plugins>

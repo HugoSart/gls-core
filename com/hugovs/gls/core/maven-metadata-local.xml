@@ -3,11 +3,12 @@
   <groupId>com.hugovs.gls</groupId>
   <artifactId>core</artifactId>
   <versioning>
-    <release>1.0.0-FINAL</release>
+    <release>1.0.1-FINAL</release>
     <versions>
       <version>true</version>
       <version>1.0.0-FINAL</version>
+      <version>1.0.1-FINAL</version>
     </versions>
-    <lastUpdated>20190407063518</lastUpdated>
+    <lastUpdated>20190407063653</lastUpdated>
   </versioning>
 </metadata>
