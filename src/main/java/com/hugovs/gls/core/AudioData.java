@@ -1,6 +1,6 @@
 package com.hugovs.gls.core;
 
-import com.hugovs.gls.util.ByteUtils;
+import com.hugovs.gls.core.util.ByteUtils;
 
 import java.util.Arrays;
 import java.util.HashMap;

@@ -1,4 +1,4 @@
-package com.hugovs.gls.util;
+package com.hugovs.gls.core.util;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

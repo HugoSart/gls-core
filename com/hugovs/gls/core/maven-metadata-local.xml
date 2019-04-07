@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>com.hugovs.gls</groupId>
+  <artifactId>core</artifactId>
+  <versioning>
+    <release>true</release>
+    <versions>
+      <version>true</version>
+      <version>1.0.0-SNAPSHOT</version>
+    </versions>
+    <lastUpdated>20190407060223</lastUpdated>
+  </versioning>
+</metadata>
