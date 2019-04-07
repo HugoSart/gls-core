@@ -24,7 +24,7 @@ public class AudioServer implements Closeable {
 
     // References
     private AudioInput input;
-    private AudioReceiver receiver;
+    private AudioReader receiver;
     private AudioFormat audioFormat;
 
     public AudioServer(int sampleRate, int sampleSize) {
@@ -32,15 +32,15 @@ public class AudioServer implements Closeable {
     }
 
     /**
-     * Starts a {@link AudioReceiver}.
+     * Starts a {@link AudioReader}.
      */
     public void start() {
 
         log.info("Starting server ...");
 
-        // Creates the AudioReceiver and also the listeners
+        // Creates the AudioReader and also the listeners
         log.info("Audio input: " + input.getClass().getSimpleName());
-        receiver = new AudioReceiver(input);
+        receiver = new AudioReader(input);
 
         // Load audioServerExtensions
         audioServerExtensions.forEach(audioServerExtension -> {
@@ -107,7 +107,7 @@ public class AudioServer implements Closeable {
     }
 
     /**
-     * Closes the {@link AudioReceiver}.
+     * Closes the {@link AudioReader}.
      */
     @Override
     public void close() throws IOException {

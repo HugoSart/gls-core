@@ -7,13 +7,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * The {@link AudioReceiver} receive {@link DatagramPacket}s sent to the given port.
+ * The {@link AudioReader} receive {@link DatagramPacket}s sent to the given port.
  *
  * @author Hugo Sartori
  */
-public class AudioReceiver {
+public class AudioReader {
 
-    private final Logger log = Logger.getLogger(AudioReceiver.class);
+    private final Logger log = Logger.getLogger(AudioReader.class);
 
     // Listeners
     private final AudioInput audioInput;
@@ -23,7 +23,7 @@ public class AudioReceiver {
     // Thread
     private AudioReceiverThread task;
 
-    public AudioReceiver(AudioInput audioInput) {
+    public AudioReader(AudioInput audioInput) {
         this.audioInput = audioInput;
     }
 

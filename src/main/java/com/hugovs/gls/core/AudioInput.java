@@ -2,7 +2,7 @@ package com.hugovs.gls.core;
 
 /**
  * Interface for the audio input.
- * The {@link AudioReceiver} uses this interface to read data.
+ * The {@link AudioReader} uses this interface to read data.
  *
  * @author Hugo Sartori
  */
