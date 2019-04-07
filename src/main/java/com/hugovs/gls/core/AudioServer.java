@@ -2,7 +2,6 @@ package com.hugovs.gls.core;
 
 import org.apache.log4j.Logger;
 
-import javax.sound.sampled.AudioFormat;
 import java.io.Closeable;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -87,7 +86,7 @@ public class AudioServer implements Closeable {
      * Closes the {@link AudioReader}.
      */
     @Override
-    public void close() throws IOException {
+    public void close() {
         receiver.stopReceiving();
         log.info("AudioServer stopped.");
     }
