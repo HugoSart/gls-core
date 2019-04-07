@@ -2,6 +2,7 @@ package com.hugovs.gls.core;
 
 import com.hugovs.gls.core.util.ByteUtils;
 
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -11,7 +12,7 @@ import java.util.Map;
  *
  * @author Hugo Sartori
  */
-public class AudioData {
+public class AudioData implements Serializable {
 
     /**
      * Extra properties of the audio.
@@ -108,6 +109,25 @@ public class AudioData {
     }
 
     /**
+     * Convert this class to an array of bytes.
+     *
+     * @return an array of bytes.
+     */
+    public byte[] toBytes() {
+        byte[] bytes = new byte[16 + samples.length];
+
+        byte[] sourceIdBytes = ByteUtils.longToBytes(sourceId);
+        System.arraycopy(sourceIdBytes, 0, bytes, 0, 8);
+
+        byte[] timestampBytes = ByteUtils.longToBytes(timestamp);
+        System.arraycopy(timestampBytes, 0, bytes, 8, 8);
+
+        System.arraycopy(samples, 0, bytes, 16, samples.length);
+
+        return bytes;
+    }
+
+    /**
      * Create a new instance of {@link AudioData} from a byte array.
      * The first 8 bytes are the device's id, the next 8 bytes are the timestamp and the remaining ones
      * are the audio samples.
@@ -121,6 +141,18 @@ public class AudioData {
                 ByteUtils.bytesToLong(Arrays.copyOfRange(data, 8, 16)),
                 Arrays.copyOfRange(data, 16, data.length)
         );
+    }
+
+    /**
+     * Unwrap the {@link AudioData} to an array of bytes.
+     * The first 8 bytes are the device's id, the next 8 bytes are the timestamp and the remaining ones
+     * are the audio samples.
+     *
+     * @param data a {@link AudioData} instance to be converted to byte array.
+     * @return an array of bytes.
+     */
+    public static byte[] unwrap(AudioData data) {
+        return data.toBytes();
     }
 
 }

@@ -27,6 +27,9 @@ public class AudioServer implements Closeable {
     private AudioReader receiver;
     private AudioFormat audioFormat;
 
+    // Extra
+    private boolean running = false;
+
     public AudioServer(int sampleRate, int sampleSize) {
         this.audioFormat = new AudioFormat(sampleRate, sampleSize, 1, true, false);
     }
@@ -58,8 +61,8 @@ public class AudioServer implements Closeable {
             }
         });
 
+        running = true;
         receiver.startReceiving();
-
         while (!receiver.isReceiving()) {
             try {
                 TimeUnit.SECONDS.sleep(1);
@@ -67,6 +70,7 @@ public class AudioServer implements Closeable {
                 // ignore
             }
         }
+        running = false;
 
         // Unload audioServerExtensions
         audioServerExtensions.forEach(audioServerExtension -> {
@@ -77,6 +81,25 @@ public class AudioServer implements Closeable {
             }
         });
 
+    }
+
+    /**
+     * Closes the {@link AudioReader}.
+     */
+    @Override
+    public void close() throws IOException {
+        receiver.stopReceiving();
+        log.info("AudioServer stopped.");
+    }
+
+    /**
+     * Checks if the server is running.
+     *
+     * @return {@code true}  : if the server is running;
+     *         {@code false} : if teh server is not running.
+     */
+    public boolean isRunning() {
+        return running;
     }
 
     /**
@@ -104,15 +127,6 @@ public class AudioServer implements Closeable {
      */
     public void addExtension(Collection<AudioServerExtension> audioServerExtensions) {
         this.audioServerExtensions.addAll(audioServerExtensions);
-    }
-
-    /**
-     * Closes the {@link AudioReader}.
-     */
-    @Override
-    public void close() throws IOException {
-        receiver.stopReceiving();
-        log.info("AudioServer stopped.");
     }
 
     public AudioFormat getAudioFormat() {
