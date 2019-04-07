@@ -15,4 +15,43 @@ public class AudioFormat {
         this.bigEndian = bigEndian;
     }
 
+    public int getSampleRate() {
+        return sampleRate;
+    }
+
+    public void setSampleRate(int sampleRate) {
+        this.sampleRate = sampleRate;
+    }
+
+    public int getSampleSize() {
+        return sampleSize;
+    }
+
+    public void setSampleSize(int sampleSize) {
+        this.sampleSize = sampleSize;
+    }
+
+    public int getChannels() {
+        return channels;
+    }
+
+    public void setChannels(int channels) {
+        this.channels = channels;
+    }
+
+    public boolean isSigned() {
+        return signed;
+    }
+
+    public void setSigned(boolean signed) {
+        this.signed = signed;
+    }
+
+    public boolean isBigEndian() {
+        return bigEndian;
+    }
+
+    public void setBigEndian(boolean bigEndian) {
+        this.bigEndian = bigEndian;
+    }
 }
