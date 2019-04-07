@@ -6,7 +6,7 @@
 
     <groupId>com.hugovs.gls</groupId>
     <artifactId>core</artifactId>
-    <version>1.0.3-FINAL</version>
+    <version>1.0.4-FINAL</version>
 
     <build>
         <plugins>
@@ -15,20 +15,23 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.0</version>
                 <configuration>
-                    <source>11</source>
-                    <target>11</target>
+                    <source>8</source>
+                    <target>8</target>
                 </configuration>
             </plugin>
         </plugins>
     </build>
 
     <dependencies>
-        <!-- https://mvnrepository.com/artifact/log4j/log4j -->
+
+        <!-- Log4j -->
         <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
             <version>1.2.17</version>
         </dependency>
+
+        <!-- JUnit 4 -->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
