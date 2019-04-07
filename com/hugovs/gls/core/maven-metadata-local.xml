@@ -6,10 +6,8 @@
     <release>1.0.0-FINAL</release>
     <versions>
       <version>true</version>
-      <version>1.0.0-SNAPSHOT</version>
-      <version>1.0-SNAPSHOT</version>
       <version>1.0.0-FINAL</version>
     </versions>
-    <lastUpdated>20190407061157</lastUpdated>
+    <lastUpdated>20190407063518</lastUpdated>
   </versioning>
 </metadata>
