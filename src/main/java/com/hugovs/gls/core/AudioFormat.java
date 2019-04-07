@@ -1,11 +1,22 @@
 package com.hugovs.gls.core;
 
-public class AudioFormat {
+import java.io.Serializable;
+
+/**
+ * Class that describes the audio properties of the audio to be processed.
+ *
+ * @author Hugo Sartori
+ */
+public class AudioFormat implements Serializable {
     private int sampleRate = 44100;
     private int sampleSize = 16;
     private int channels = 1;
     private boolean signed = true;
     private boolean bigEndian = true;
+
+    public AudioFormat() {
+        // empty
+    }
 
     public AudioFormat(int sampleRate, int sampleSize, int channels, boolean signed, boolean bigEndian) {
         this.sampleRate = sampleRate;

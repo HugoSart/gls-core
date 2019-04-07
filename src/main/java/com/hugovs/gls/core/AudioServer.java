@@ -3,7 +3,6 @@ package com.hugovs.gls.core;
 import org.apache.log4j.Logger;
 
 import java.io.Closeable;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -23,7 +22,7 @@ public class AudioServer implements Closeable {
 
     // References
     private AudioInput input;
-    private AudioReader receiver;
+    private AudioReader reader;
     private AudioFormat audioFormat;
 
     // Extra
@@ -42,27 +41,27 @@ public class AudioServer implements Closeable {
 
         // Creates the AudioReader and also the listeners
         log.info("Audio input: " + input.getClass().getSimpleName());
-        receiver = new AudioReader(input);
+        reader = new AudioReader(input);
 
         // Load audioServerExtensions
         audioServerExtensions.forEach(audioServerExtension -> {
             if (AudioListener.class.isAssignableFrom(audioServerExtension.getClass()))
-                receiver.addListener((AudioListener) audioServerExtension);
+                reader.addListener((AudioListener) audioServerExtension);
             if (AudioFilter.class.isAssignableFrom(audioServerExtension.getClass()))
-                receiver.addFilter((AudioFilter) audioServerExtension);
+                reader.addFilter((AudioFilter) audioServerExtension);
         });
         audioServerExtensions.forEach(audioServerExtension -> {
             try {
                 audioServerExtension.setAudioServer(this);
                 audioServerExtension.onServerStart();
             } catch (Exception e) {
-                log.error("Failed to start audioServerExtension " + audioServerExtension.getClass().getSimpleName(), e);
+                log.error("Failed to open audioServerExtension " + audioServerExtension.getClass().getSimpleName(), e);
             }
         });
 
         running = true;
-        receiver.startReceiving();
-        while (!receiver.isReceiving()) {
+        reader.startReceiving();
+        while (!reader.isReceiving()) {
             try {
                 TimeUnit.SECONDS.sleep(1);
             } catch (InterruptedException e) {
@@ -87,7 +86,7 @@ public class AudioServer implements Closeable {
      */
     @Override
     public void close() {
-        receiver.stopReceiving();
+        reader.stopReceiving();
         log.info("AudioServer stopped.");
     }
 

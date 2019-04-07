@@ -16,15 +16,15 @@ public class AudioReader {
     private final Logger log = Logger.getLogger(AudioReader.class);
 
     // Listeners
-    private final AudioInput audioInput;
+    private final AudioInput input;
     private final List<AudioListener> audioListeners = new ArrayList<>();
     private final List<AudioFilter> audioFilters = new ArrayList<>();
 
     // Thread
     private AudioReceiverThread task;
 
-    public AudioReader(AudioInput audioInput) {
-        this.audioInput = audioInput;
+    public AudioReader(AudioInput input) {
+        this.input = input;
     }
 
     /**
@@ -34,9 +34,10 @@ public class AudioReader {
 
         log.info("Start receiving ...");
 
-        task = new AudioReceiverThread(audioInput);
+        task = new AudioReceiverThread(input);
         task.audioListeners = audioListeners;
         task.audioFilters = audioFilters;
+        input.open();
         task.start();
 
     }
@@ -46,6 +47,7 @@ public class AudioReader {
      */
     public void stopReceiving() {
         task.interrupt();
+        input.close();
     }
 
     /**
